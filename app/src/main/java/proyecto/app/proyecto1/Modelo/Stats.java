@@ -1,6 +1,8 @@
 package proyecto.app.proyecto1.Modelo;
 
-public class Stats {
+import java.io.Serializable;
+
+public class Stats   implements Serializable {
     private float armorperlevel;
     private int attackdamage;
     private int mpperlevel;

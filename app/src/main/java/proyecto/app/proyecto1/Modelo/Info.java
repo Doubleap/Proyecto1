@@ -2,8 +2,10 @@ package proyecto.app.proyecto1.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Info {
+public class Info   implements Serializable {
     private int difficulty;
     private int attack;
     private int defense;

@@ -1,8 +1,10 @@
 package proyecto.app.proyecto1.Modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ListaCampeones {
+public class ListaCampeones   implements Serializable {
     private Campeon Annie;
     private Campeon Olaf;
     private Campeon Galio;

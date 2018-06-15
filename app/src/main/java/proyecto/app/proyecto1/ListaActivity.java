@@ -1,5 +1,6 @@
 package proyecto.app.proyecto1;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class ListaActivity extends AppCompatActivity {
     private Response.Listener<JSONObject> callbackExito;
     private Response.ErrorListener callbackError;
     private static ListaCampeones personajes;
+    private ListView lista;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +41,15 @@ public class ListaActivity extends AppCompatActivity {
 
         //Callback de la clase 6
         callbackExito = new Response.Listener<JSONObject>(){
+            @SuppressLint("NewApi")
             @Override
             public void onResponse(JSONObject response){
                 //Actualziar ViewPager despues de obtener los datos
                 JsonElement mJsonAll=null;
                 JsonParser parser = new JsonParser();
-                final ListView lista = findViewById(R.id.lista);
+                adapter = new CampeonAdapter(getApplicationContext(), R.layout.campeon, new ArrayList<Campeon>());
+                lista = findViewById(R.id.lista);
+
                 try {
                     //JsonElement mJson =  parser.parse(response.getJSONObject("data").getJSONArray("results").getJSONObject(getArguments().getInt(ARG_SECTION_NUMBER)).toString());
                     mJsonAll =  parser.parse(response.getJSONObject("data").toString());
@@ -57,20 +62,22 @@ public class ListaActivity extends AppCompatActivity {
 
                     //Llenar el adapter con la informacion recibida del API
                     for(int x=1;x<=personajes.getTotalCampeones();x++){
-                        adapter.add(personajes.getCampeon(x));
+                        adapter.getItems().add(personajes.getCampeon(x));
                     }
                     lista.setAdapter(adapter);
+                    lista.deferNotifyDataSetChanged();
                     lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Campeon elemento = (Campeon) lista.getSelectedItem();
-                            //Intent mensajero = new Intent(getBaseContext(), CampeonActivity.class);
-                            //mensajero.putExtra(Campeon.class.toString(), elemento);
-                            //startActivity(mensajero);
-                            Toast.makeText(getBaseContext(), elemento.getTitle(), Toast.LENGTH_LONG).show();
+                            Campeon elemento = (Campeon) adapter.getItem(i);
+                            Intent mensajero = new Intent(getBaseContext(), CampeonActivity.class);
+                            mensajero.putExtra(Campeon.class.toString(), elemento);
+                            startActivity(mensajero);
+                            //Toast.makeText(getBaseContext(), "HOLA", Toast.LENGTH_LONG).show();
                         }
                     });
-                    lista.deferNotifyDataSetChanged();
+
+
                 }catch (Exception e){
                     Toast.makeText(getBaseContext(), e.getMessage()+"No se encontraron resultados1", Toast.LENGTH_LONG).show();
                 }
@@ -82,15 +89,27 @@ public class ListaActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), error.getMessage()+"No se encontraron resultados2", Toast.LENGTH_LONG).show();
             }
         };
-        adapter = new CampeonAdapter(this, R.layout.campeon, new ArrayList<Campeon>());
+
         //final ListView lista = findViewById(R.id.lista);
         //lista.setAdapter(adapter);
+
 
         String url = getString(R.string.API_URL_ALLCHAMP) + "&api_key=" + getString(R.string.API_KEY);
         //LLamado a la API
         HttpCliente clienteWeb = new HttpCliente(getBaseContext());
         clienteWeb.GetJson(url,callbackExito,callbackError,"Inicio");
 
+        //ListView lista = findViewById(R.id.lista);
+        /*lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Campeon elemento = (Campeon) lista.getSelectedItem();
+                //Intent mensajero = new Intent(getBaseContext(), CampeonActivity.class);
+                //mensajero.putExtra(Campeon.class.toString(), elemento);
+                //startActivity(mensajero);
+                Toast.makeText(getBaseContext(), "HOLA", Toast.LENGTH_LONG).show();
+            }
+        });*/
     }
     private void cargarImagenBackgroundBoton(String url, final Button boton){
         final ImageView img = new ImageView(this);

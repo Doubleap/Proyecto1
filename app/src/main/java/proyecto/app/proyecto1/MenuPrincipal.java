@@ -125,7 +125,7 @@ public class MenuPrincipal extends AppCompatActivity {
     private void OpcionMenu(int id) {
         Intent mensajero = null;
         if(id == R.id.button_campeones) {
-            mensajero = new Intent(this, MainActivity.class);
+            mensajero = new Intent(this, ListaActivity.class);
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_items) {
@@ -133,7 +133,7 @@ public class MenuPrincipal extends AppCompatActivity {
             mensajero.putExtra("id", "222");
         }
         if(id == R.id.button_runas) {
-            mensajero = new Intent(this, ListaActivity.class);
+            mensajero = new Intent(this, MainActivity.class);
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_maestrias) {
