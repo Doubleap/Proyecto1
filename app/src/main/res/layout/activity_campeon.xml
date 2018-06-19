@@ -29,7 +29,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY" />
-
+<TextView
+    android:id="@+id/apodo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text=""
+    android:layout_gravity="bottom|left"
+    android:padding="5dp"
+    android:layout_marginLeft="40dp"/>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"

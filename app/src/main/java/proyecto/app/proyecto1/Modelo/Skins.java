@@ -5,41 +5,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Info   implements Serializable {
-    private int difficulty;
-    private int attack;
-    private int defense;
-    private int magic;
+public class Skins implements Serializable {
+    private int id;
+    private int num;
+    private String name;
 
-    public int getDifficulty() {
-        return difficulty;
+    public int getId() {
+        return id;
     }
 
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getAttack() {
-        return attack;
+    public int getNum() {
+        return num;
     }
 
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void setNum(int num) {
+        this.num = num;
     }
 
-    public int getDefense() {
-        return defense;
+    public String getName() {
+        return name;
     }
 
-    public void setDefense(int defense) {
-        this.defense = defense;
-    }
-
-    public int getMagic() {
-        return magic;
-    }
-
-    public void setMagic(int magic) {
-        this.magic = magic;
+    public void setName(String name) {
+        this.name = name;
     }
 }

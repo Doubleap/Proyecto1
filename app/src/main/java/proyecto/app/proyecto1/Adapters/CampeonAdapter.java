@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,10 +58,7 @@ public class CampeonAdapter  extends ArrayAdapter{
         //return super.getView(position, convertView, parent);
         final Campeon dato = (Campeon) items.get(position);
         String nombre = dato.getName();
-        String info = "Dificultad: "+dato.getInfo().getDifficulty()+"\n";
-        info += "Ataque: "+dato.getInfo().getAttack()+"\n";
-        info += "Defensa: "+dato.getInfo().getDefense()+"\n";
-        info += "Magia: "+dato.getInfo().getMagic();
+        String info = "";
         if (convertView == null)
         {
             // Crear una celda si no ha sido creada. De lo contrario la celda se re-utiliza y debe limpiarse o refrescarse
@@ -72,11 +70,20 @@ public class CampeonAdapter  extends ArrayAdapter{
         ImageView imagen = convertView.findViewById(R.id.contactPic);
         String url_imagen = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"+dato.getKey()+"_0.jpg";
         Picasso.get().load(url_imagen).into(imagen);*/
+
+        ProgressBar dificultad = convertView.findViewById(R.id.dificultad);
+        ProgressBar ataque = convertView.findViewById(R.id.ataque);
+        ProgressBar defensa = convertView.findViewById(R.id.defensa);
+        ProgressBar magia = convertView.findViewById(R.id.magia);
         final TextView textoNombre = convertView.findViewById(R.id.textView2);
         TextView textoInfo = convertView.findViewById(R.id.info);
         ImageView imagen = convertView.findViewById(R.id.contactPic);
         String url_imagen = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+dato.getKey()+"_0.jpg";
 
+        dificultad.setProgress(dato.getInfo().getDifficulty());
+        ataque.setProgress(dato.getInfo().getAttack());
+        defensa.setProgress(dato.getInfo().getDefense());
+        magia.setProgress(dato.getInfo().getMagic());
         textoNombre.setText(nombre);
         textoInfo.setText(info);
         Picasso.get().load(url_imagen).into(imagen);

@@ -5,10 +5,12 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,6 +30,11 @@ public class HttpCliente {
     }
     public void GetJson(String url, Response.Listener<JSONObject> callbackSuccess, Response.ErrorListener callbackError,String tag){
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url,null  , callbackSuccess, callbackError);
+        request.setTag(tag);
+        cola.add(request);
+    }
+    public void GetJsonArray(String url, Response.Listener<JSONArray> callbackSuccess, Response.ErrorListener callbackError, String tag){
+        JsonArrayRequest  request = new JsonArrayRequest(Request.Method.GET, url,null  , callbackSuccess, callbackError);
         request.setTag(tag);
         cola.add(request);
     }

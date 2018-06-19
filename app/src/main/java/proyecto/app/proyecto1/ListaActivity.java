@@ -127,4 +127,15 @@ public class ListaActivity extends AppCompatActivity {
                 });
 
     }
+    public ArrayList<Campeon> searchByName(String name,ArrayList<Campeon> campeones){
+        String searchString = name;
+        ArrayList<Campeon> resList = new ArrayList<Campeon>();
+
+        for (Campeon curVal : campeones){
+            if (curVal.getName().contains(searchString)){
+                resList.add(curVal);
+            }
+        }
+        return resList;
+    }
 }

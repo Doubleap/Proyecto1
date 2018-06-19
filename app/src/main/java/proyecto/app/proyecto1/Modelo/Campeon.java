@@ -3,6 +3,7 @@ package proyecto.app.proyecto1.Modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Campeon  implements Serializable {
@@ -16,6 +17,7 @@ public class Campeon  implements Serializable {
     private String[] enemytips;
     private Info info;
     private Stats stats;
+    private Skins[] skins;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -65,5 +67,13 @@ public class Campeon  implements Serializable {
 
     public void setStats(Stats stats) {
         this.stats = stats;
+    }
+
+    public Skins[] getSkins() {
+        return skins;
+    }
+
+    public void setSkins(Skins[] skins) {
+        this.skins = skins;
     }
 }

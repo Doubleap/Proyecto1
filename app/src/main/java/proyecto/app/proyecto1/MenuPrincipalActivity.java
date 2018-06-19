@@ -18,7 +18,7 @@ import com.squareup.picasso.Target;
 
 import proyecto.app.proyecto1.Clases.CustomButton;
 
-public class MenuPrincipal extends AppCompatActivity {
+public class MenuPrincipalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,23 +129,23 @@ public class MenuPrincipal extends AppCompatActivity {
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_items) {
-            mensajero = new Intent(this, CampeonActivity.class);
+            mensajero = new Intent(this, ListaItemsActivity.class);
             mensajero.putExtra("id", "222");
         }
         if(id == R.id.button_runas) {
-            mensajero = new Intent(this, MainActivity.class);
+            mensajero = new Intent(this, ListaActivity.class);
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_maestrias) {
-            mensajero = new Intent(this, MainActivity.class);
+            mensajero = new Intent(this, ListaActivity.class);
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_ranking) {
-            mensajero = new Intent(this, MainActivity.class);
+            mensajero = new Intent(this, SummonerActivity.class);
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_partidas) {
-            mensajero = new Intent(this, MainActivity.class);
+            mensajero = new Intent(this, ListaActivity.class);
             //mensajero.putExtra("id", id);
         }
         startActivity(mensajero);
