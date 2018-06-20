@@ -16,9 +16,12 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import proyecto.app.proyecto1.Clases.App;
 import proyecto.app.proyecto1.Clases.CustomButton;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,13 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         Button boton_maestrias = (Button)findViewById(R.id.button_maestrias);
         Button boton_ranking = (Button)findViewById(R.id.button_ranking);
         Button boton_partidas = (Button)findViewById(R.id.button_partidas);
+
+        boton_campeones.setCompoundDrawablesWithIntrinsicBounds( 0, R.drawable.drawable_campeones, 0, 0);
+        boton_itemes.setCompoundDrawablesWithIntrinsicBounds( 0, R.drawable.drawable_articulos, 0, 0);
+        boton_runas.setCompoundDrawablesWithIntrinsicBounds( 0, R.drawable.drawable_runas, 0, 0);
+        boton_maestrias.setCompoundDrawablesWithIntrinsicBounds( 0, R.drawable.drawable_maestrias, 0, 0);
+        boton_ranking.setCompoundDrawablesWithIntrinsicBounds( 0, R.drawable.drawable_ranking, 0, 0);
+        boton_partidas.setCompoundDrawablesWithIntrinsicBounds( 0, R.drawable.drawable_partidas, 0, 0);
 
         //Acciones para botones del menu principal
 
@@ -137,11 +147,11 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_maestrias) {
-            mensajero = new Intent(this, ListaActivity.class);
+            mensajero = new Intent(this, RankingActivity.class);
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_ranking) {
-            mensajero = new Intent(this, SummonerActivity.class);
+            mensajero = new Intent(this, RankingActivity.class);
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_partidas) {

@@ -13,12 +13,11 @@
             android:focusable="false"
             android:clickable="false">
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/contactPic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_foreground"
                 android:focusable="false"
                 android:clickable="false"/>
 

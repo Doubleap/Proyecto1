@@ -51,7 +51,7 @@ public class CampeonActivity extends AppCompatActivity {
         TextView stats_col1 = (TextView) findViewById(R.id.stats_col1);
         final Campeon campeon = (Campeon)getIntent().getSerializableExtra(Campeon.class.toString());
         LinearLayout myGallery = (LinearLayout)findViewById(R.id.skins);
-        String nombre = campeon.getName();
+        final String nombre = campeon.getName();
         //SKINS
         for(int x=0; x < campeon.getSkins().length; x++){
             LinearLayout layout = new LinearLayout(getApplicationContext());
@@ -72,7 +72,10 @@ public class CampeonActivity extends AppCompatActivity {
                     ImageView imageView = findViewById(R.id.campeon_image);
                     TextView name = findViewById(R.id.name_text);
                     CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.toolbar_layout);
-                    mCollapsingToolbarLayout.setTitle(nombre_skin);
+                    if(nombre_skin != "default")
+                        mCollapsingToolbarLayout.setTitle(nombre_skin);
+                    else
+                        mCollapsingToolbarLayout.setTitle(nombre);
                     Picasso.get().load(imagePath).into(imageView);
                 }
             });

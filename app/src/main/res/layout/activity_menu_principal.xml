@@ -13,7 +13,7 @@
     android:layout_height="0dip"
     android:orientation="horizontal"
     android:layout_weight="1">
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/button_campeones"
         android:layout_width="0dip"
         android:layout_height="match_parent"
@@ -27,11 +27,11 @@
         android:textStyle="normal"
         android:textSize="16dp"
         android:layout_gravity="bottom"
-        android:drawableTop="@drawable/drawable_campeones"
+
         android:paddingTop="15dp"
         android:textColor="@color/colorBlack"
         />
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/button_items"
         android:layout_width="0dip"
         android:layout_height="match_parent"
@@ -42,7 +42,7 @@
         android:layout_margin="5dp"
         android:text="Articulos"
         android:textAlignment="gravity"
-        android:drawableTop="@drawable/drawable_articulos"
+
         android:paddingTop="15dp"
         android:textStyle="normal"
         android:textSize="16dp"
@@ -54,7 +54,7 @@
         android:layout_height="0dip"
         android:orientation="horizontal"
         android:layout_weight="1">
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/button_runas"
             android:layout_width="0dip"
             android:layout_height="match_parent"
@@ -65,68 +65,66 @@
             android:layout_margin="5dp"
             android:text="Runas"
             android:textAlignment="gravity"
-            android:drawableTop="@drawable/drawable_runas"
-            android:paddingTop="15dp"
-            android:textStyle="normal"
-            android:textSize="16dp"
-            android:textColor="@color/colorBlack"
-            />
-        <Button
-            android:id="@+id/button_maestrias"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp"
-            android:background="@color/colorWhite"
-            android:layout_margin="5dp"
-            android:text="Maestrias"
-            android:textAlignment="gravity"
-            android:drawableTop="@drawable/drawable_maestrias"
-            android:paddingTop="15dp"
-            android:textStyle="normal"
-            android:textSize="16dp"
-            android:textColor="@color/colorBlack"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:orientation="horizontal"
-        android:layout_weight="1">
-        <Button
-            android:id="@+id/button_ranking"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp"
-            android:background="@color/colorWhite"
-            android:layout_margin="5dp"
-            android:text="Ranking"
-            android:textAlignment="gravity"
-            android:drawableTop="@drawable/drawable_ranking"
-            android:paddingTop="15dp"
-            android:textStyle="normal"
-            android:textSize="16dp"
-            android:textColor="@color/colorBlack"
-            />
-        <Button
-            android:id="@+id/button_partidas"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp"
-            android:background="@color/colorWhite"
-            android:layout_margin="5dp"
-            android:text="Partida"
-            android:textAlignment="gravity"
-            android:drawableTop="@drawable/drawable_partidas"
-            android:paddingTop="15dp"
-            android:textStyle="normal"
-            android:textSize="16dp"
-            android:textColor="@color/colorBlack"
-            />
-    </LinearLayout>
+
+        android:paddingTop="15dp"
+        android:textStyle="normal"
+        android:textSize="16dp"
+        android:textColor="@color/colorBlack"
+        />
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_maestrias"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:background="@color/colorWhite"
+        android:layout_margin="5dp"
+        android:text="Maestrias"
+        android:textAlignment="gravity"
+
+        android:paddingTop="15dp"
+        android:textStyle="normal"
+        android:textSize="16dp"
+        android:textColor="@color/colorBlack"
+        />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:orientation="horizontal"
+    android:layout_weight="1">
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_ranking"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:background="@color/colorWhite"
+        android:layout_margin="5dp"
+        android:text="Ranking"
+        android:textAlignment="gravity"
+    android:paddingTop="15dp"
+    android:textStyle="normal"
+    android:textSize="16dp"
+    android:textColor="@color/colorBlack"
+    />
+<android.support.v7.widget.AppCompatButton
+    android:id="@+id/button_partidas"
+    android:layout_width="0dip"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    tools:layout_editor_absoluteX="16dp"
+    tools:layout_editor_absoluteY="16dp"
+    android:background="@color/colorWhite"
+    android:layout_margin="5dp"
+    android:text="Partida"
+    android:textAlignment="gravity"
+    android:paddingTop="15dp"
+    android:textStyle="normal"
+    android:textSize="16dp"
+    android:textColor="@color/colorBlack"
+    />
+</LinearLayout>
 </LinearLayout>

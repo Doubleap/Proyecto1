@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -45,6 +46,7 @@ public class ListaItemsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_items);
+        final ProgressBar progreso = findViewById(R.id.progressBar);
         callbackExito = new Response.Listener<JSONObject>(){
             @SuppressLint("NewApi")
             @Override
@@ -85,7 +87,7 @@ public class ListaItemsActivity extends AppCompatActivity {
                             Toast.makeText(getBaseContext(), "Abrir detalle de Articulo", Toast.LENGTH_LONG).show();
                         }
                     });
-
+                    progreso.setVisibility(View.GONE);
                 }catch (Exception e){
                     Toast.makeText(getBaseContext(), e.getMessage()+"No se encontraron resultados1", Toast.LENGTH_LONG).show();
                 }

@@ -72,7 +72,7 @@ public class DatosSummonerFragment extends Fragment {
         ArrayList<String> parametros = (ArrayList<String>)bundle.get("argumentos");
         String summoner = parametros.get(0);
         final View vista = inflater.inflate(R.layout.fragment_summoner, container, false);
-
+        SummonerAdapter summonerAdapter = new SummonerAdapter();
         callbackExitoP = new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -86,87 +86,91 @@ public class DatosSummonerFragment extends Fragment {
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onResponse(JSONArray response) {
-                        JSONObject respuesta=null;
-                        try {
-                            respuesta = (JSONObject) response.get(0);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        if(respuesta != null) {
-                            Gson gson = new Gson();
-                            Summoner summoner = gson.fromJson(respuesta.toString(), Summoner.class);
+                        //adapter = new SummonerAdapter();
+                        JSONObject respuesta = null;
+                        if (respuesta != null) {
+                            for (int x = 0; x < response.length();x++) {
+                                try {
+                                    respuesta = (JSONObject) response.get(x);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
-                            ImageView imagen = container.findViewById(R.id.tier_image);
-                            ImageView imagen_racha = container.findViewById(R.id.racha_image);
-                            TextView header = container.findViewById(R.id.header_text);
-                            TextView puntos = container.findViewById(R.id.puntos_text);
-                            TextView name = container.findViewById(R.id.name_text);
-                            TextView ganadas = container.findViewById(R.id.ganadas_text);
-                            TextView perdidas = container.findViewById(R.id.perdidas_text);
-                            TextView footer = container.findViewById(R.id.footer_text);
-                            TextView league = container.findViewById(R.id.league_text);
+                                Gson gson = new Gson();
+                                Summoner summoner = gson.fromJson(respuesta.toString(), Summoner.class);
 
-                            String info = "" + summoner.getQueueType() + " ( " + summoner.getTier() + " " + summoner.getRank() + " )";
-                            String p = String.valueOf(summoner.getLeaguePoints());
-                            String info_footer = "Encendido:"+summoner.isHotStreak() + " | ";
-                            info_footer += "Sangre Fresca: " + summoner.isFreshBlood() + " | ";
-                            info_footer += "Inactivo: " + summoner.isInactive() + " | ";
-                            info_footer += "Veterano: " + summoner.isVeteran();
+                                ImageView imagen = container.findViewById(R.id.tier_image);
+                                ImageView imagen_racha = container.findViewById(R.id.racha_image);
+                                TextView header = container.findViewById(R.id.header_text);
+                                TextView puntos = container.findViewById(R.id.puntos_text);
+                                TextView name = container.findViewById(R.id.name_text);
+                                TextView ganadas = container.findViewById(R.id.ganadas_text);
+                                TextView perdidas = container.findViewById(R.id.perdidas_text);
+                                TextView footer = container.findViewById(R.id.footer_text);
+                                TextView league = container.findViewById(R.id.league_text);
+
+                                String info = "" + summoner.getQueueType() + " ( " + summoner.getTier() + " " + summoner.getRank() + " )";
+                                String p = String.valueOf(summoner.getLeaguePoints());
+                                String info_footer = "Encendido:" + summoner.isHotStreak() + " | ";
+                                info_footer += "Sangre Fresca: " + summoner.isFreshBlood() + " | ";
+                                info_footer += "Inactivo: " + summoner.isInactive() + " | ";
+                                info_footer += "Veterano: " + summoner.isVeteran();
 
 
-                            Resources resources = App.context.getResources();
-                            String tier = summoner.getTier();
-                            String rank = summoner.getRank();
-                            if (summoner.getTier() == null) {
-                                tier = "bronze";
-                            } else {
-                                tier = tier.toLowerCase();
+                                Resources resources = App.context.getResources();
+                                String tier = summoner.getTier();
+                                String rank = summoner.getRank();
+                                if (summoner.getTier() == null) {
+                                    tier = "bronze";
+                                } else {
+                                    tier = tier.toLowerCase();
+                                }
+                                if (summoner.getRank() == null) {
+                                    rank = "v";
+                                } else {
+                                    rank = rank.toLowerCase();
+                                }
+                                final int resourceId = resources.getIdentifier(tier + "_" + rank + "", "drawable", App.context.getPackageName());
+
+                                header.setText(info);
+                                league.setText(summoner.getLeagueName());
+                                name.setText(summoner.getPlayerOrTeamName());
+                                puntos.setText(p);
+                                ganadas.setText("G:" + String.valueOf(summoner.getWins()));
+                                perdidas.setText("P:" + String.valueOf(summoner.getLosses()));
+                                footer.setText(info_footer);
+                                imagen.setImageDrawable(resources.getDrawable(resourceId));
+                                if (summoner.isHotStreak())
+                                    imagen_racha.setImageDrawable(resources.getDrawable(R.drawable.heat));
+                                else
+                                    imagen_racha.setImageDrawable(null);
+                                FrameLayout fl = container.findViewById(R.id.fl_fragment);
+                                fl.setBackground(null);
                             }
-                            if (summoner.getRank() == null) {
-                                rank = "v";
-                            } else {
-                                rank = rank.toLowerCase();
-                            }
-                            final int resourceId = resources.getIdentifier(tier + "_" + rank + "", "drawable", App.context.getPackageName());
-
-                            header.setText(info);
-                            league.setText(summoner.getLeagueName());
-                            name.setText(summoner.getPlayerOrTeamName());
-                            puntos.setText(p);
-                            ganadas.setText("G:"+String.valueOf(summoner.getWins()));
-                            perdidas.setText("P:"+String.valueOf(summoner.getLosses()));
-                            footer.setText(info_footer);
-                            imagen.setImageDrawable(resources.getDrawable(resourceId));
-                            if(summoner.isHotStreak())
-                                imagen_racha.setImageDrawable(resources.getDrawable(R.drawable.heat));
-                            else
-                                imagen_racha.setImageDrawable(null);
-                            FrameLayout fl = container.findViewById(R.id.fl_fragment);
-                            fl.setBackground(null);
                         }else{
-                            Resources resources = App.context.getResources();
-                            ImageView imagen = container.findViewById(R.id.tier_image);
-                            ImageView imagen_racha = container.findViewById(R.id.racha_image);
-                            TextView header = container.findViewById(R.id.header_text);
-                            TextView puntos = container.findViewById(R.id.puntos_text);
-                            TextView name = container.findViewById(R.id.name_text);
-                            TextView ganadas = container.findViewById(R.id.ganadas_text);
-                            TextView perdidas = container.findViewById(R.id.perdidas_text);
-                            TextView footer = container.findViewById(R.id.footer_text);
-                            FrameLayout fl = container.findViewById(R.id.fl_fragment);
+                                Resources resources = App.context.getResources();
+                                ImageView imagen = container.findViewById(R.id.tier_image);
+                                ImageView imagen_racha = container.findViewById(R.id.racha_image);
+                                TextView header = container.findViewById(R.id.header_text);
+                                TextView puntos = container.findViewById(R.id.puntos_text);
+                                TextView name = container.findViewById(R.id.name_text);
+                                TextView ganadas = container.findViewById(R.id.ganadas_text);
+                                TextView perdidas = container.findViewById(R.id.perdidas_text);
+                                TextView footer = container.findViewById(R.id.footer_text);
+                                FrameLayout fl = container.findViewById(R.id.fl_fragment);
 
-                            final int resourceId = resources.getIdentifier("bronze_v", "drawable", App.context.getPackageName());
-                            //imagen.setImageDrawable(resources.getDrawable(resourceId));
-                            fl.setBackground(resources.getDrawable(resourceId));
-                            imagen_racha.setImageDrawable(null);
-                            footer.setText("");
-                            header.setText("Sin datos!");
-                            name.setText("UNRANKED");
-                            puntos.setText("");
-                            ganadas.setText("");
-                            perdidas.setText("");
+                                final int resourceId = resources.getIdentifier("bronze_v", "drawable", App.context.getPackageName());
+                                //imagen.setImageDrawable(resources.getDrawable(resourceId));
+                                fl.setBackground(resources.getDrawable(resourceId));
+                                imagen_racha.setImageDrawable(null);
+                                footer.setText("");
+                                header.setText("Sin datos!");
+                                name.setText("UNRANKED");
+                                puntos.setText("");
+                                ganadas.setText("");
+                                perdidas.setText("");
+                            }
                         }
-                    }
                 };
 
                 callbackError  = new Response.ErrorListener() {

@@ -3,6 +3,7 @@ package proyecto.app.proyecto1;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 
+import proyecto.app.proyecto1.Adapters.SummonerAdapter;
+import proyecto.app.proyecto1.Clases.App;
 import proyecto.app.proyecto1.Fragments.*;
 
 public class SummonerActivity extends AppCompatActivity {
@@ -26,6 +29,9 @@ public class SummonerActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                ArrayList<String> tags = new ArrayList<String>();
+                tags.add("Titulo 1");
+                tags.add("Titulo 2");
                 Fragment summonerFragment = new DatosSummonerFragment();
                 Bundle bundl = new Bundle();
                 ArrayList<String>   argumentos = new ArrayList<String>();
@@ -57,11 +63,17 @@ public class SummonerActivity extends AppCompatActivity {
 
     }
     private void mostrarFragment(android.app.Fragment fragment) {
-        FrameLayout contedorFragments = (FrameLayout)findViewById(R.id.contenedor);
+        ViewPager contedorFragments = (ViewPager)findViewById(R.id.contenedor);
 
         FragmentTransaction transaccion = getFragmentManager().beginTransaction();
         transaccion.replace(R.id.contenedor, fragment);
 
         transaccion.commit();
+        /*FrameLayout contedorFragments = (FrameLayout)findViewById(R.id.contenedor);
+
+        FragmentTransaction transaccion = getFragmentManager().beginTransaction();
+        transaccion.replace(R.id.contenedor, fragment);
+
+        transaccion.commit();*/
     }
 }

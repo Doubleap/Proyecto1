@@ -1,9 +1,13 @@
 package proyecto.app.proyecto1.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +30,12 @@ public class SummonerAdapter extends PagerAdapter {
     public ArrayList<Summoner> getItems(){
         return items;
     }
-
+    private String[] tabTitles;
     @Override
     public Object instantiateItem(final ViewGroup container, int position) {
         //return super.getView(position, convertView, parent);
         final Summoner dato = (Summoner) items.get(position);
+        tabTitles[position] = dato.getQueueType();
         String nombre = dato.getPlayerOrTeamName();
         String info = "Rank: "+dato.getQueueType()+" ("+dato.getTier()+" "+dato.getRank()+")";
         info += "Pertenence a la liga: "+dato.getLeagueName()+"\n";
@@ -72,13 +77,19 @@ public class SummonerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 1;
+        return getItems().size();
     }
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return object==view;
 
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return tabTitles[position];
     }
 }
 
