@@ -15,9 +15,12 @@ public class Campeon  implements Serializable {
     private String partype;
     private String[] allytips;
     private String[] enemytips;
+    private String[] tags;
     private Info info;
     private Stats stats;
     private Skins[] skins;
+    private Pasiva passive;
+    private Spell[] spells;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -75,5 +78,29 @@ public class Campeon  implements Serializable {
 
     public void setSkins(Skins[] skins) {
         this.skins = skins;
+    }
+
+    public Pasiva getPassive() {
+        return passive;
+    }
+
+    public void setPassive(Pasiva passive) {
+        this.passive = passive;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
+    public Spell[] getSpells() {
+        return spells;
+    }
+
+    public void setSpells(Spell[] spells) {
+        this.spells = spells;
     }
 }

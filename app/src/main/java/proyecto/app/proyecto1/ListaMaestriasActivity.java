@@ -1,7 +1,6 @@
 package proyecto.app.proyecto1;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -9,10 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -20,9 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,14 +29,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import proyecto.app.proyecto1.Adapters.ItemsAdapter;
+import proyecto.app.proyecto1.Adapters.MaestriaAdapter;
 import proyecto.app.proyecto1.Clases.HttpCliente;
-import proyecto.app.proyecto1.Modelo.Campeon;
-import proyecto.app.proyecto1.Modelo.Items;
+import proyecto.app.proyecto1.Modelo.Maestria;
 
-public class ListaItemsActivity extends AppCompatActivity {
-    private ItemsAdapter adapter;
-    private ItemsAdapter filteredadapter;
+public class ListaMaestriasActivity extends AppCompatActivity {
+    private MaestriaAdapter adapter;
+    private MaestriaAdapter filteredadapter;
     private Response.Listener<JSONObject> callbackExito;
     private Response.ErrorListener callbackError;
 
@@ -61,10 +54,10 @@ public class ListaItemsActivity extends AppCompatActivity {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                ArrayList<Items> itemsFiltrados = searchByName(newText,adapter.getItems());
+                ArrayList<Maestria> maestriasFiltrados = searchByName(newText,adapter.getItems());
                 filteredadapter.clear();
-                for(int x=0;x < itemsFiltrados.size();x++){
-                    filteredadapter.getItems().add(itemsFiltrados.get(x));
+                for(int x=0;x < maestriasFiltrados.size();x++){
+                    filteredadapter.getItems().add(maestriasFiltrados.get(x));
                 }
                 lista.setAdapter(filteredadapter);
                 lista.deferNotifyDataSetChanged();
@@ -74,14 +67,13 @@ public class ListaItemsActivity extends AppCompatActivity {
 
         return true;
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_items);
+        setContentView(R.layout.activity_lista_maestrias);
         final ProgressBar progreso = findViewById(R.id.progressBar);
 
-        getSupportActionBar().setTitle("Lista de Itemes");
+        getSupportActionBar().setTitle("Lista de Maestrias");
 
         callbackExito = new Response.Listener<JSONObject>(){
             @SuppressLint("NewApi")
@@ -90,8 +82,8 @@ public class ListaItemsActivity extends AppCompatActivity {
                 //Actualziar ListView despues de obtener los datos
                 JsonElement mJsonAll=null;
                 JsonParser parser = new JsonParser();
-                adapter = new ItemsAdapter(getApplicationContext(), R.layout.item_item, new ArrayList<Items>());
-                filteredadapter = new ItemsAdapter(getApplicationContext(), R.layout.item_item, new ArrayList<Items>());
+                adapter = new MaestriaAdapter(getApplicationContext(), R.layout.item_maestria, new ArrayList<Maestria>());
+                filteredadapter = new MaestriaAdapter(getApplicationContext(), R.layout.item_maestria, new ArrayList<Maestria>());
                 lista = findViewById(R.id.gridview);
 
                 try {
@@ -108,21 +100,21 @@ public class ListaItemsActivity extends AppCompatActivity {
                         String key = entry.getKey();
                         Object value = entry.getValue();
                         JSONObject elemento = MapToJson((Map)value);
-                        mJsonAll =  parser.parse(elemento.getJSONObject("data").toString().replace("\"[","[").replace("]\"","]").replace("\"{","{").replace("}\"","}"));
-                        Items articulo = gson.fromJson(mJsonAll, Items.class);
-                        adapter.getItems().add(articulo);
-                        filteredadapter.getItems().add(articulo);
+                        mJsonAll =  parser.parse(elemento.getJSONObject("data").toString());
+                        Maestria maestria = gson.fromJson(mJsonAll, Maestria.class);
+                        adapter.getItems().add(maestria);
+                        filteredadapter.getItems().add(maestria);
                     }
                     lista.setAdapter(adapter);
                     lista.deferNotifyDataSetChanged();
                     lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Items elemento = (Items) adapter.getItem(i);
+                            /*Items elemento = (Items) adapter.getItem(i);
                             Intent mensajero = new Intent(getBaseContext(), ItemActivity.class);
                             mensajero.putExtra(Items.class.toString(), elemento);
-                            startActivity(mensajero);
-                            //Toast.makeText(getBaseContext(), "Abrir detalle de Articulo", Toast.LENGTH_LONG).show();
+                            startActivity(mensajero);*/
+                            Toast.makeText(getBaseContext(), "Abrir detalle Maestria", Toast.LENGTH_LONG).show();
                         }
                     });
                     progreso.setVisibility(View.GONE);
@@ -138,44 +130,44 @@ public class ListaItemsActivity extends AppCompatActivity {
             }
         };
 
-        String url = getString(R.string.API_URL_ALLITEMS) + "&api_key=" + getString(R.string.API_KEY);
+        String url = getString(R.string.API_URL_ALLMAESTRIAS) + "&api_key=" + getString(R.string.API_KEY);
         //LLamado a la API
         HttpCliente clienteWeb = new HttpCliente(getBaseContext());
         clienteWeb.GetJson(url,callbackExito,callbackError,"Inicio");
     }
     public static Map<String, Object> toMap(JSONObject object) throws JSONException {
-            Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
 
-            Iterator<String> keysItr = object.keys();
-            while(keysItr.hasNext()) {
-                    String key = keysItr.next();
-                    Object value = object.get(key);
+        Iterator<String> keysItr = object.keys();
+        while(keysItr.hasNext()) {
+            String key = keysItr.next();
+            Object value = object.get(key);
 
-                    if(value instanceof JSONArray) {
-                            value = toList((JSONArray) value);
-                        }
-                    else if(value instanceof JSONObject) {
-                            value = toMap((JSONObject) value);
-                        }
-                    map.put(key, value);
-                }
-            return map;
+            if(value instanceof JSONArray) {
+                value = toList((JSONArray) value);
+            }
+            else if(value instanceof JSONObject) {
+                value = toMap((JSONObject) value);
+            }
+            map.put(key, value);
         }
+        return map;
+    }
 
     public static List<Object> toList(JSONArray array) throws JSONException {
-            List<Object> list = new ArrayList<Object>();
-            for(int i = 0; i < array.length(); i++) {
-                    Object value = array.get(i);
-                    if(value instanceof JSONArray) {
-                            value = toList((JSONArray) value);
-                        }
-                    else if(value instanceof JSONObject) {
-                            value = toMap((JSONObject) value);
-                        }
-                    list.add(value);
-                }
-            return list;
+        List<Object> list = new ArrayList<Object>();
+        for(int i = 0; i < array.length(); i++) {
+            Object value = array.get(i);
+            if(value instanceof JSONArray) {
+                value = toList((JSONArray) value);
+            }
+            else if(value instanceof JSONObject) {
+                value = toMap((JSONObject) value);
+            }
+            list.add(value);
         }
+        return list;
+    }
 
     public static JSONObject MapToJson(Map map)throws JSONException{
 
@@ -193,11 +185,11 @@ public class ListaItemsActivity extends AppCompatActivity {
 
         return main;
     }
-    public ArrayList<Items> searchByName(String name,ArrayList<Items> items){
+    public ArrayList<Maestria> searchByName(String name,ArrayList<Maestria> maestrias){
         String searchString = name;
-        ArrayList<Items> resList = new ArrayList<Items>();
+        ArrayList<Maestria> resList = new ArrayList<Maestria>();
 
-        for (Items curVal : items){
+        for (Maestria curVal : maestrias){
             if (curVal.getName().toLowerCase().contains(searchString.toLowerCase())){
                 resList.add(curVal);
             }
@@ -205,4 +197,3 @@ public class ListaItemsActivity extends AppCompatActivity {
         return resList;
     }
 }
-

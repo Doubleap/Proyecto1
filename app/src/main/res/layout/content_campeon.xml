@@ -30,10 +30,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginLeft="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginRight="50dp" />
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp" />
         </HorizontalScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="Pasiva y Habilidades"
+            android:background="@color/colorBlack"
+            android:textColor="@color/colorWhite"
+            android:paddingLeft="20dp"/>
+        <LinearLayout
+            android:id="@+id/abilities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,9 +15,6 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import proyecto.app.proyecto1.Clases.App;
-import proyecto.app.proyecto1.Clases.CustomButton;
-
 public class MenuPrincipalActivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -26,6 +22,9 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        getSupportActionBar().setTitle("League of Legends API");
+
         Button boton_campeones = (Button)findViewById(R.id.button_campeones);
         Button boton_itemes = (Button)findViewById(R.id.button_items);
         Button boton_runas = (Button)findViewById(R.id.button_runas);
@@ -147,7 +146,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_maestrias) {
-            mensajero = new Intent(this, RankingActivity.class);
+            mensajero = new Intent(this, ListaMaestriasActivity.class);
             //mensajero.putExtra("id", id);
         }
         if(id == R.id.button_ranking) {

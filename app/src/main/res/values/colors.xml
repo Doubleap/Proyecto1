@@ -6,7 +6,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorRed">#ff404a</color>
     <color name="colorLightGrey">#dadada</color>
-    <color name="colorLightGreen">#d4ffb5</color>
+    <color name="colorLightGreen">#bcf196</color>
     <color name="colorBlack">#050505</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorDarkGrey">#666666</color>
@@ -14,4 +14,6 @@
     <color name="colorBlue">#1650b4</color>
     <color name="colorGreen">#199f2f</color>
     <color name="colorDarkRed">#aa141b</color>
+    <color name="colorLightBrown">#949191</color>
+    <color name="colorYellow">#f1eb32</color>
 </resources>

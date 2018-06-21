@@ -20,15 +20,17 @@
     <string name="path_imagenes_passive">http://ddragon.leagueoflegends.com/cdn/6.24.1/img/passive/</string>
     <string name="path_imagenes_abilities">http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/</string>
     <string name="path_imagenes_articulos">http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/</string>
+    <string name="path_imagenes_maestrias">http://ddragon.leagueoflegends.com/cdn/6.24.1/img/mastery/</string>
 
     <string name="API_URL_ALLCHAMP">https://la1.api.riotgames.com/lol/static-data/v3/champions?locale=es_ES&amp;champListData=all</string>
     <string name="API_URL_ALLITEMS">https://la1.api.riotgames.com/lol/static-data/v3/items?locale=es_ES&amp;tags=all</string>
     <string name="API_URL_SUMMONER">https://la1.api.riotgames.com/lol/league/v3/positions/by-summoner/</string>
     <string name="API_URL_SUMMONER_BY_NAME">https://la1.api.riotgames.com/lol/summoner/v3/summoners/by-name/</string>
+    <string name="API_URL_ALLMAESTRIAS">https://la1.api.riotgames.com/lol/static-data/v3/masteries?locale=es_ES&amp;tags=all</string>
 
 
     <string name="API_URL_CHAMP">https://la1.api.riotgames.com/lol/static-data/v3/champions/%1$s?locale=es_ES&amp;champData=all</string>
-    <string name="API_KEY">RGAPI-44663db1-c948-442a-9015-1f04d0ca7852</string>
+    <string name="API_KEY">RGAPI-03f7e359-6ede-4cfe-82fe-876c14019a3d</string>
     <!--General-->
     <string name="transition_character_image" translatable="false">transition_character_image</string>
     <string name="transition_section_image" translatable="false">transition_section_image</string>

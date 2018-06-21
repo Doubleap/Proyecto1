@@ -7,29 +7,29 @@ import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Items  implements Serializable {
-    private	int	id	;
-    //private	GoldDto	gold	;
-    private	String	plaintext	;
-    private	boolean	hideFromAll	;
-    private	boolean	inStore	;
-    private ArrayList<String> into	;
-    //private	InventoryDataStatsDto	stats	;
+    private	int	id;
+    private	Costo	gold;
+    private	String	plaintext;
+    private	boolean	hideFromAll;
+    private	boolean	inStore;
+    private ArrayList<String> into;
+    //private	InventoryDataStatsDto	stats;
     private	String	colloq	;
-    //private	Map[string, boolean]	maps	;
+    //private	Map[string, boolean]	maps;
     private	int	specialRecipe	;
-    //private	ImageDto	image	;
+    //private	ImageDto	image;
     private	String	description	;
-    private	ArrayList<String>	tags	;
-    //private	Map[string, string]	effect	;
-    private	String	requiredChampion	;
-    private	ArrayList<String>	from	;
-    private	String	group	;
-    private	boolean	consumeOnFull	;
-    private	String	name	;
-    private	boolean	consumed	;
-    private	String	sanitizedDescription	;
-    private	int	depth	;
-    private	int	stacks	;
+    private	ArrayList<String>	tags;
+    //private	Map[string, string]	effect;
+    private	String	requiredChampion;
+    private	ArrayList<String>	from;
+    private	String	group;
+    private	boolean	consumeOnFull;
+    private	String	name;
+    private	boolean	consumed;
+    private	String	sanitizedDescription;
+    private	int	depth;
+    private	int	stacks;
 
     public int getId() {
         return id;
@@ -173,5 +173,13 @@ public class Items  implements Serializable {
 
     public void setStacks(int stacks) {
         this.stacks = stacks;
+    }
+
+    public Costo getGold() {
+        return gold;
+    }
+
+    public void setGold(Costo gold) {
+        this.gold = gold;
     }
 }

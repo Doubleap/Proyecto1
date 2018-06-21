@@ -87,6 +87,8 @@ public class ListaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
         final ProgressBar progreso = findViewById(R.id.progressBar);
+
+        getSupportActionBar().setTitle("Lista de Campeones");
         //Callback de la clase 6
         callbackExito = new Response.Listener<JSONObject>(){
             @SuppressLint("NewApi")
@@ -182,7 +184,7 @@ public class ListaActivity extends AppCompatActivity {
         ArrayList<Campeon> resList = new ArrayList<Campeon>();
 
         for (Campeon curVal : campeones){
-            if (curVal.getName().contains(searchString)){
+            if (curVal.getName().toLowerCase().contains(searchString.toLowerCase())){
                 resList.add(curVal);
             }
         }

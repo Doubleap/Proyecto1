@@ -86,7 +86,7 @@ public class RankingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        getSupportActionBar().setTitle("Rank de Invocador");
     }
 
     public void Buscar(String busqueda){
