@@ -13,13 +13,13 @@
         android:layout_height="match_parent"
         android:id="@+id/gridview"
         android:numColumns="4"
-        android:background="@color/colorWhite" />
+        android:background="@color/colorBlack" />
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
+        android:indeterminateTint="@color/colorLightGrey"
         />
     </FrameLayout>
 </LinearLayout>

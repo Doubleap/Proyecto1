@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,14 +65,14 @@ public class CampeonActivity extends AppCompatActivity {
         //SKINS
         for(int x=0; x < campeon.getSkins().length; x++){
             LinearLayout layout = new LinearLayout(getApplicationContext());
-            layout.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
+            layout.setLayoutParams(new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
             layout.setGravity(Gravity.CENTER);
-            layout.setPadding(5,0,5,0);
+            //layout.setPadding(5,0,5,0);
             final ImageView skin_image = new ImageView(getApplicationContext());
             skin_image.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
             skin_image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            //skin_image.setTooltipText(campeon.getSkins()[x].getName());
-            //skin_image.setImageBitmap(bm);
+            skin_image.setPadding(0,0,1,0);
+;
             final String nombre_skin = campeon.getSkins()[x].getName();
             final String imagePath = getString(R.string.path_imagenes) + campeon.getKey()+"_"+campeon.getSkins()[x].getNum()+".jpg";
             Picasso.get().load(imagePath).into(skin_image);
@@ -96,8 +97,11 @@ public class CampeonActivity extends AppCompatActivity {
         //Habilidades y Pasiva
         for(int x=0; x < campeon.getSpells().length; x++){
             LinearLayout layout = new LinearLayout(getApplicationContext());
-            layout.setLayoutParams(new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
-            layout.setGravity(Gravity.CENTER);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
+            params.bottomMargin = 2;
+            layout.setBackground(getResources().getDrawable(R.color.colorDarkGrey));
+            layout.setLayoutParams(params);
+            layout.setGravity(Gravity.TOP);
             layout.setPadding(5,0,5,0);
             layout.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout layoutv = new LinearLayout(getApplicationContext());

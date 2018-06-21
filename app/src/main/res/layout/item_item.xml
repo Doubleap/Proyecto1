@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="0dp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorYellow"
             android:textSize="15dp"
             android:focusable="false"
             android:clickable="false"/>

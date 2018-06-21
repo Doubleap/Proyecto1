@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,15 +44,19 @@ public class ItemActivity extends AppCompatActivity {
 
         //VIENE DE
         if(item.getFrom() != null) {
+            LinearLayout layout = new LinearLayout(getApplicationContext());
+            layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            layout.setGravity(Gravity.CENTER);
+            layout.setPadding(5, 0, 5, 0);
+            layout.setOrientation(LinearLayout.HORIZONTAL);
             TextView titulo = new TextView(getApplicationContext());
+            titulo.setTextColor(getResources().getColor(R.color.colorYellow));
             titulo.setText("PROVIENE DE");
+            buildsfrom.addView(titulo);
             for (int x = 0; x < item.getFrom().size(); x++) {
-                LinearLayout layout = new LinearLayout(getApplicationContext());
-                layout.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
-                layout.setGravity(Gravity.CENTER);
-                layout.setPadding(5, 0, 5, 0);
+
                 final ImageView item_image = new ImageView(getApplicationContext());
-                item_image.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
+                item_image.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
                 item_image.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
                 final String imagePath = getString(R.string.path_imagenes_articulos) + item.getFrom().get(x) + ".png";
@@ -66,22 +71,26 @@ public class ItemActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "Abrir item anidado", Toast.LENGTH_LONG).show();
                     }
                 });
-                layout.addView(titulo);
+
                 layout.addView(item_image);
-                buildsfrom.addView(layout);
             }
+            buildsfrom.addView(layout);
         }
         //SE CONVIERTE EN
         if(item.getInto() != null) {
+            LinearLayout layout = new LinearLayout(getApplicationContext());
+            layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            layout.setGravity(Gravity.CENTER);
+            layout.setPadding(5, 0, 5, 0);
+            layout.setOrientation(LinearLayout.HORIZONTAL);
             TextView titulo = new TextView(getApplicationContext());
+            titulo.setTextColor(getResources().getColor(R.color.colorYellow));
             titulo.setText("SE CONVIERTE EN");
+            buildsinto.addView(titulo);
             for (int x = 0; x < item.getInto().size(); x++) {
-                LinearLayout layout = new LinearLayout(getApplicationContext());
-                layout.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
-                layout.setGravity(Gravity.CENTER);
-                layout.setPadding(5, 0, 5, 0);
+
                 final ImageView item_image = new ImageView(getApplicationContext());
-                item_image.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
+                item_image.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
                 item_image.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
                 final String imagePath = getString(R.string.path_imagenes_articulos) + item.getInto().get(x) + ".png";
@@ -92,10 +101,9 @@ public class ItemActivity extends AppCompatActivity {
 
                     }
                 });
-                layout.addView(titulo);
                 layout.addView(item_image);
-                buildsfrom.addView(layout);
             }
+            buildsinto.addView(layout);
         }
 
     }

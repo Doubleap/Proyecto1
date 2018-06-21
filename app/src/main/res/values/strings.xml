@@ -30,7 +30,7 @@
 
 
     <string name="API_URL_CHAMP">https://la1.api.riotgames.com/lol/static-data/v3/champions/%1$s?locale=es_ES&amp;champData=all</string>
-    <string name="API_KEY">RGAPI-03f7e359-6ede-4cfe-82fe-876c14019a3d</string>
+    <string name="API_KEY">RGAPI-692a2392-056c-4ca7-8e26-55b41936c6f3</string>
     <!--General-->
     <string name="transition_character_image" translatable="false">transition_character_image</string>
     <string name="transition_section_image" translatable="false">transition_section_image</string>

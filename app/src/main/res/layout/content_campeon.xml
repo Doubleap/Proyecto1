@@ -29,9 +29,7 @@
                 android:id="@+id/skins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp" />
+                android:orientation="horizontal" />
         </HorizontalScrollView>
         <TextView
             android:layout_width="match_parent"
@@ -46,8 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             />
     <TextView
         android:layout_width="match_parent"
