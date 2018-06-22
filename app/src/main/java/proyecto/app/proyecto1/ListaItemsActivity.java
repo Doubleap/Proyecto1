@@ -94,12 +94,8 @@ public class ListaItemsActivity extends AppCompatActivity {
                 filteredadapter = new ItemsAdapter(getApplicationContext(), R.layout.item_item, new ArrayList<Items>());
                 lista = findViewById(R.id.gridview);
 
-                try {
-                    //JsonElement mJson =  parser.parse(response.getJSONObject("data").getJSONArray("results").getJSONObject(getArguments().getInt(ARG_SECTION_NUMBER)).toString());
-                    mJsonAll =  parser.parse(response.getJSONObject("data").toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                //JsonElement mJson =  parser.parse(response.getJSONObject("data").getJSONArray("results").getJSONObject(getArguments().getInt(ARG_SECTION_NUMBER)).toString());
+                //mJsonAll =  parser.parse(response.getJSONObject("data").toString());
                 try {
                     Map<String,Object> prueba = toMap(response.getJSONObject("data"));
                     Gson gson = new Gson();
@@ -118,7 +114,7 @@ public class ListaItemsActivity extends AppCompatActivity {
                     lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Items elemento = (Items) adapter.getItem(i);
+                            Items elemento = (Items) filteredadapter.getItem(i);
                             Intent mensajero = new Intent(getBaseContext(), ItemActivity.class);
                             mensajero.putExtra(Items.class.toString(), elemento);
                             startActivity(mensajero);
@@ -194,11 +190,10 @@ public class ListaItemsActivity extends AppCompatActivity {
         return main;
     }
     public ArrayList<Items> searchByName(String name,ArrayList<Items> items){
-        String searchString = name;
         ArrayList<Items> resList = new ArrayList<Items>();
 
         for (Items curVal : items){
-            if (curVal.getName().toLowerCase().contains(searchString.toLowerCase())){
+            if (curVal.getName().toLowerCase().contains(name.toLowerCase())){
                 resList.add(curVal);
             }
         }
